@@ -33,6 +33,10 @@ module Taka
           self['type']
         end
 
+        def accept
+          self['accept']
+        end
+
         def blur
         end
 
