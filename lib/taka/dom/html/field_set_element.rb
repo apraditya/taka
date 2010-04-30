@@ -4,10 +4,10 @@ module Taka
       module FieldSetElement
         def form
           my_parent = parent
-          while my_parent && my_parent.node_name != 'form'
+          while my_parent.respond_to?(:parent)
+            return my_parent if my_parent.node_name == 'form'
             my_parent = my_parent.parent
           end
-          my_parent
         end
       end
     end
