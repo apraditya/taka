@@ -83,7 +83,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       state = streetAttr.specified()
       assertFalse("attrSpecifiedValueRemoveAssert", state)
 
-  end
+  end if get_named_item_returning_empty_attribute_solved?
 
   ###
   # Gets URI that identifies the test.

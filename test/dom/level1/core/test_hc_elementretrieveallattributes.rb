@@ -75,7 +75,7 @@ DOMTestCase('hc_elementretrieveallattributes') do
       actual << attributeName
       indexid3539572 += 1
             end
-      
+
       if (("text/html" == getContentType()))
         assertEqualsIgnoreCase("htmlAttributeNames", htmlExpected, actual)
 
@@ -84,7 +84,7 @@ DOMTestCase('hc_elementretrieveallattributes') do
 
          end
        
-  end
+  end if missing_default_values_solved?
 
   ###
   # Gets URI that identifies the test.

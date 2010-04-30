@@ -65,7 +65,7 @@ DOMTestCase('nodevalue07') do
       newValue = newNode.nodeValue()
       assert_nil(newValue, "nullAfterAttemptedChange")
       
-  end
+  end if nokogiri_entity_resolve_bug_solved?
 
   ###
   # Gets URI that identifies the test.

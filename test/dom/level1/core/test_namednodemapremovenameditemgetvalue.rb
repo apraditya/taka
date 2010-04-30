@@ -85,7 +85,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       value = streetAttr.value()
       assert_equal("Yes", value, "namednodemapRemoveNamedItemGetValueAssert")
             
-  end
+  end if get_named_item_returning_empty_attribute_solved?
 
   ###
   # Gets URI that identifies the test.

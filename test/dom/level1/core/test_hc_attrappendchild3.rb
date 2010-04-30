@@ -69,17 +69,21 @@ DOMTestCase('hc_attrappendchild3') do
       retval = docFrag.appendChild(terNode)
       retval = docFrag.appendChild(dayNode)
       retval = titleAttr.appendChild(docFrag)
+      
       value = titleAttr.value()
       assert_equal("Yesterday", value, "attrValue")
-            value = titleAttr.nodeValue()
+      
+      value = titleAttr.nodeValue()
       assert_equal("Yesterday", value, "attrNodeValue")
-            value = retval.nodeValue()
+      
+      value = retval.nodeValue()
       assert_nil(value, "retvalValue")
+      
       lastChild = titleAttr.lastChild()
       value = lastChild.nodeValue()
       assert_equal("day", value, "lastChildValue")
             
-  end
+  end if multiple_text_nodes_merged_problem_solved?
 
   ###
   # Gets URI that identifies the test.

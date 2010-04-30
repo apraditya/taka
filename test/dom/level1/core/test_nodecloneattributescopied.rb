@@ -80,7 +80,7 @@ DOMTestCase('nodecloneattributescopied') do
             end
       assert_equal(expectedResult, result, "nodeCloneAttributesCopiedAssert1")
             
-  end
+  end if node_clone_attributes_not_copied_solved?
 
   ###
   # Gets URI that identifies the test.

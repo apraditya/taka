@@ -76,6 +76,9 @@ DOMTestCase('elementwrongdocumenterr') do
     begin
       success = false;
       begin
+        
+        # does not raise anything
+        
         attrAddress = testAddress.setAttributeNode(newAttribute)
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::WRONG_DOCUMENT_ERR)

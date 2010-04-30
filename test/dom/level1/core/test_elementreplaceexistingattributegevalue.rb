@@ -66,8 +66,19 @@ DOMTestCase('elementreplaceexistingattributegevalue') do
       newAttribute = doc.createAttribute("street")
       streetAttr = testEmployee.setAttributeNode(newAttribute)
       value = streetAttr.value()
+
+      # it does not seem to return the new attribute:
+      #
+      # newAttr
+      # #<Nokogiri::XML::Attr:0x80c264d0 name="street">
+      #
+      # streetAttr
+      # #<Nokogiri::XML::Attr:0x80c26228 name="street">
+      #
+      # ... but still streetAttr.value is just an empty string?
+
       assert_equal("No", value, "streetNo")
-            
+
   end
 
   ###

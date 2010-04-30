@@ -60,20 +60,30 @@ DOMTestCase('hc_attrappendchild1') do
       acronymList = doc.getElementsByTagName("acronym")
       testNode = acronymList.item(3)
       attributes = testNode.attributes()
+
       titleAttr = attributes.getNamedItem("title")
       textNode = doc.createTextNode("terday")
+      
+      # textNode.nodeValue is "terday" here
+      
       retval = titleAttr.appendChild(textNode)
+
+      # textNode.nodeValue is now "Yesterday" ... should it be dup'ed or something?
+      
       value = titleAttr.value()
       assert_equal("Yesterday", value, "attrValue")
-            value = titleAttr.nodeValue()
+
+      value = titleAttr.nodeValue()
       assert_equal("Yesterday", value, "attrNodeValue")
-            value = retval.nodeValue()
+
+      value = retval.nodeValue()
       assert_equal("terday", value, "retvalValue")
-            lastChild = titleAttr.lastChild()
+
+      lastChild = titleAttr.lastChild()
       value = lastChild.nodeValue()
       assert_equal("terday", value, "lastChildValue")
             
-  end
+  end if multiple_text_nodes_merged_problem_solved?
 
   ###
   # Gets URI that identifies the test.

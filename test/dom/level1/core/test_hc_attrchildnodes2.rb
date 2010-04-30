@@ -64,16 +64,19 @@ DOMTestCase('hc_attrchildnodes2') do
       textNode = doc.createTextNode("terday")
       retval = titleAttr.appendChild(textNode)
       assertSize("childNodesSize", 2, childNodes)
+      
       textNode = childNodes.item(0)
       value = textNode.nodeValue()
       assert_equal("Yes", value, "child1IsYes")
-            textNode = childNodes.item(1)
+      
+      textNode = childNodes.item(1)
       value = textNode.nodeValue()
       assert_equal("terday", value, "child2IsTerday")
-            textNode = childNodes.item(2)
+      
+      textNode = childNodes.item(2)
       assert_nil(textNode, "thirdItemIsNull")
       
-  end
+  end if multiple_text_nodes_merged_problem_solved?
 
   ###
   # Gets URI that identifies the test.

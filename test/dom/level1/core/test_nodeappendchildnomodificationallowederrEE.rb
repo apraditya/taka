@@ -73,7 +73,7 @@ DOMTestCase('nodeappendchildnomodificationallowederrEE') do
       assert(success, "throw_NO_MODIFICATION_ALLOWED_ERR")
     end
 
-  end
+  end if nokogiri_entity_resolve_bug_solved?
 
   ###
   # Gets URI that identifies the test.

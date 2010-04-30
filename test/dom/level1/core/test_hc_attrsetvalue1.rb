@@ -55,25 +55,28 @@ DOMTestCase('hc_attrsetvalue1') do
     firstChild = nil
     otherChild = nil
     doc = load_document("hc_staff", true)
-      acronymList = doc.getElementsByTagName("acronym")
-      testNode = acronymList.item(3)
-      attributes = testNode.attributes()
-      titleAttr = attributes.getNamedItem("title")
-      firstChild = titleAttr.firstChild()
-      assert_not_nil(firstChild, "attrChildNotNull")
-      titleAttr.value = "Tomorrow"
-      firstChild.nodeValue = "impl reused node"
-      value = titleAttr.value()
-      assert_equal("Tomorrow", value, "attrValue")
-            value = titleAttr.nodeValue()
-      assert_equal("Tomorrow", value, "attrNodeValue")
-            firstChild = titleAttr.lastChild()
-      value = firstChild.nodeValue()
-      assert_equal("Tomorrow", value, "firstChildValue")
-            otherChild = firstChild.nextSibling()
-      assert_nil(otherChild, "nextSiblingIsNull")
-      
-  end
+    acronymList = doc.getElementsByTagName("acronym")
+    testNode = acronymList.item(3)
+    attributes = testNode.attributes()
+    titleAttr = attributes.getNamedItem("title")
+    firstChild = titleAttr.firstChild()
+    assert_not_nil(firstChild, "attrChildNotNull")
+
+    titleAttr.value = "Tomorrow"
+    firstChild.nodeValue = "impl reused node"
+    value = titleAttr.value()
+    assert_equal("Tomorrow", value, "attrValue")
+
+    value = titleAttr.nodeValue()
+    assert_equal("Tomorrow", value, "attrNodeValue")
+
+    firstChild = titleAttr.lastChild()
+    value = firstChild.nodeValue()
+
+    assert_equal("Tomorrow", value, "firstChildValue")
+    otherChild = firstChild.nextSibling()
+    assert_nil(otherChild, "nextSiblingIsNull")
+  end if attribute_reused_implementation_solved?
 
   ###
   # Gets URI that identifies the test.

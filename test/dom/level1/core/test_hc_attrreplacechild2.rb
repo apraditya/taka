@@ -81,7 +81,7 @@ DOMTestCase('hc_attrreplacechild2') do
       value = firstChild.nodeValue()
       assert_equal("ter", value, "firstChildValue")
             
-  end
+  end if using_docfragments_instead_of_text_nodes_solved?
 
   ###
   # Gets URI that identifies the test.

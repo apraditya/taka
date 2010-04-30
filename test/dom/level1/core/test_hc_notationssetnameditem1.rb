@@ -53,35 +53,29 @@ DOMTestCase('hc_notationssetnameditem1') do
     retval = nil
     elem = nil
     doc = load_document("hc_staff", true)
-      docType = doc.doctype()
+    docType = doc.doctype()
       
-      if (
-    !(("text/html" == getContentType()))
-)
-        assert_not_nil(docType, "docTypeNotNull")
+    if "text/html" != getContentType()
+      assert_not_nil(docType, "docTypeNotNull")
       notations = docType.notations()
       assert_not_nil(notations, "notationsNotNull")
       elem = doc.createElement("br")
       
       begin
-      retval = notations.setNamedItem(elem)
-      fail("throw_HIER_OR_NO_MOD_ERR")
-     rescue DOMException => ex
-           case ex.code
-      when 3 : 
-       # break;
-      when 7 : 
-       # break;
-          else
+        retval = notations.setNamedItem(elem)
+        fail("throw_HIER_OR_NO_MOD_ERR")
+      rescue Taka::DOMException => ex
+        case ex.code
+        when 3 : 
+          # break;
+        when 7 : 
+          # break;
+        else
           raise ex
-          end
-        
+        end
       end # end begin
-      
-
-         end
-       
-  end
+    end
+  end if various_exceptions_not_implemented_solved?
 
   ###
   # Gets URI that identifies the test.

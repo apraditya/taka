@@ -80,7 +80,7 @@ DOMTestCase('hc_namednodemapchildnoderange') do
       child = attributes.item(3)
       assert_nil(child, "attr3")
       
-  end
+  end if missing_default_values_solved?
 
   ###
   # Gets URI that identifies the test.

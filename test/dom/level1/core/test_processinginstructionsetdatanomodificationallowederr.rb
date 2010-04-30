@@ -88,7 +88,7 @@ org.w3c.domts.DocumentBuilderSetting.notExpandEntityReferences
       assert(success, "throw_NO_MODIFICATION_ALLOWED_ERR")
     end
 
-  end
+  end if processing_instruction_write_data_solved?
 
   ###
   # Gets URI that identifies the test.

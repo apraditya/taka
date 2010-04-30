@@ -75,7 +75,7 @@ DOMTestCase('hc_attrnormalize') do
             secondChild = firstChild.nextSibling()
       assert_nil(secondChild, "secondChildIsNull")
       
-  end
+  end if node_normalize_not_implemented_solved?
 
   ###
   # Gets URI that identifies the test.

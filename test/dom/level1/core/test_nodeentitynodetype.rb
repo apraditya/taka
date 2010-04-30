@@ -62,7 +62,7 @@ DOMTestCase('nodeentitynodetype') do
       nodeType = entityNode.nodeType()
       assert_equal(6, nodeType, "entityNodeType")
             
-  end
+  end if nokogiri_entity_resolve_bug_solved?
 
   ###
   # Gets URI that identifies the test.

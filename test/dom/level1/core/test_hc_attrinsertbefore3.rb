@@ -85,7 +85,7 @@ DOMTestCase('hc_attrinsertbefore3') do
       value = lastChild.nodeValue()
       assert_equal("day", value, "lastChildValue")
             
-  end
+  end if multiple_text_nodes_merged_problem_solved?
 
   ###
   # Gets URI that identifies the test.

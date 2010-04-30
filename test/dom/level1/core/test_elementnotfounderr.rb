@@ -24,7 +24,7 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'he
 #     The "removeAttributeNode(oldAttr)" method raises a
 #    NOT_FOUND_ERR DOMException if the "oldAttr" attribute
 #    is not an attribute of the element.
-#     
+#
 #    Retrieve the last employee and attempt to remove
 #    a non existing attribute node.  This should cause the
 #    intended exception to be raised.  This test makes use
@@ -70,6 +70,9 @@ DOMTestCase('elementnotfounderr') do
     begin
       success = false;
       begin
+        
+        # does not raise anything
+        
         attrAddress = testAddress.removeAttributeNode(oldAttribute)
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::NOT_FOUND_ERR)

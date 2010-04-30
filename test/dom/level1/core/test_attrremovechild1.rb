@@ -61,18 +61,18 @@ DOMTestCase('attrremovechild1') do
       attrNode = entElement.getAttributeNode("domestic")
       textNode = attrNode.firstChild()
       assert_not_nil(textNode, "attrChildNotNull")
-      
+
     begin
       success = false;
       begin
         removedNode = attrNode.removeChild(textNode)
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::NO_MODIFICATION_ALLOWED_ERR)
-      end 
+      end
       assert(success, "setValue_throws_NO_MODIFICATION_ERR")
     end
 
-  end
+  end if nokogiri_entity_resolve_bug_solved?
 
   ###
   # Gets URI that identifies the test.

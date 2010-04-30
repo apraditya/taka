@@ -82,7 +82,7 @@ DOMTestCase('hc_attrgetvalue2') do
             
          end
        
-  end
+  end if entity_references_instead_of_text_nodes_solved?
 
   ###
   # Gets URI that identifies the test.

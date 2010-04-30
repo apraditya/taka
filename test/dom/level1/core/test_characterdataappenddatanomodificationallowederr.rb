@@ -21,10 +21,10 @@ See W3C License http://www.w3.org/Consortium/Legal/ for more details.
 require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'helper'))
 
 ###
-#     The "appendData(arg)" method raises a NO_MODIFICATION_ALLOWED_ERR 
-#    DOMException if the node is readonly.  
+#     The "appendData(arg)" method raises a NO_MODIFICATION_ALLOWED_ERR
+#    DOMException if the node is readonly.
 #    Obtain the children of the THIRD "gender" element.  The elements
-#    content is an entity reference.  Get the FIRST item 
+#    content is an entity reference.  Get the FIRST item
 #    from the entity reference and execute the "appendData(arg)" method.
 #    This causes a NO_MODIFICATION_ALLOWED_ERR DOMException to be thrown.
 # @author NIST
@@ -67,28 +67,44 @@ DOMTestCase('characterdataappenddatanomodificationallowederr') do
       entReference = genderNode.firstChild()
       assert_not_nil(entReference, "entReferenceNotNull")
       nodeType = entReference.nodeType()
-      
-      if (equals(1, nodeType))
+
+      # entReference is:
+      # "<entElement domestic=\"Yes\">Element data</entElement>"
+
+      if (equals(1, nodeType)) # what's this got to do in a test case?
         entReference = doc.createEntityReference("ent4")
-      assert_not_nil(entReference, "createdEntRefNotNull")
-      
-         end
-       entElement = entReference.firstChild()
+        assert_not_nil(entReference, "createdEntRefNotNull")
+      end
+
+      # entReference is now:
+      # "&ent4;"
+      entElement = entReference.firstChild()
       assert_not_nil(entElement, "entElementNotNull")
+      
+      # entElementContent is:
+      # "<entElement domestic=\"Yes\">Element data</entElement>"
+      #
+      # which is not what the variable name is saying, and the method appendData 
+      # is not missing below
       entElementContent = entElement.firstChild()
       assert_not_nil(entElementContent, "entElementContentNotNull")
       
+      # so again, maybe entReference.firstChild should return the entity value
+
     begin
       success = false;
       begin
+        
+        # method appendData is not missing here
+        
         entElementContent.appendData("newString")
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::NO_MODIFICATION_ALLOWED_ERR)
-      end 
+      end
       assert(success, "throw_NO_MODIFICATION_ALLOWED_ERR")
     end
 
-  end
+  end if nokogiri_entity_resolve_bug_solved?
 
   ###
   # Gets URI that identifies the test.

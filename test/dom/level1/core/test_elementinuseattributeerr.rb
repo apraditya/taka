@@ -78,6 +78,12 @@ DOMTestCase('elementinuseattributeerr') do
     begin
       success = false;
       begin
+        
+        # does not raise anything
+        #
+        # setAttributeNode should probably set the new attribute's parent to the receiving element
+        # like newAttribute.parent = newElement but that segfaults in nokogiri/xml/node.rb:243
+        
         setAttr2 = testAddress.setAttributeNode(newAttribute)
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::INUSE_ATTRIBUTE_ERR)

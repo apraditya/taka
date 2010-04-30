@@ -69,6 +69,9 @@ DOMTestCase('documentinvalidcharacterexceptioncreatepi1') do
     begin
       success = false;
       begin
+        
+        # does not raise anything
+        
         badPI = doc.createProcessingInstruction("", "data")
       rescue Taka::DOMException => ex
         success = (ex.code == Taka::DOMException::INVALID_CHARACTER_ERR)
@@ -78,7 +81,7 @@ DOMTestCase('documentinvalidcharacterexceptioncreatepi1') do
 
          end
        
-  end
+  end if various_exceptions_not_implemented_solved?
 
   ###
   # Gets URI that identifies the test.

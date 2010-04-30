@@ -24,9 +24,9 @@ require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'he
 #     If the "newChild" is already in the tree, the
 #     "insertBefore(newChild,refChild)" method must first
 #     remove it before the insertion takes place.
-#     
+#
 #     Insert a node Element ("employeeId") that is already
-#     present in the tree.   The existing node should be 
+#     present in the tree.   The existing node should be
 #     removed first and the new one inserted.   The node is
 #     inserted at a different position in the tree to assure
 #     that it was indeed inserted.
@@ -65,57 +65,58 @@ DOMTestCase('nodeinsertbeforenewchildexists') do
     childName = nil
     insertedNode = nil
     expectedWhitespace = []
-      expectedWhitespace << "#text"
-      expectedWhitespace << "#text"
-      expectedWhitespace << "name"
-      expectedWhitespace << "#text"
-      expectedWhitespace << "position"
-      expectedWhitespace << "#text"
-      expectedWhitespace << "salary"
-      expectedWhitespace << "#text"
-      expectedWhitespace << "gender"
-      expectedWhitespace << "#text"
-      expectedWhitespace << "employeeId"
-      expectedWhitespace << "address"
-      expectedWhitespace << "#text"
-      
+    expectedWhitespace << "#text"
+    expectedWhitespace << "#text"
+    expectedWhitespace << "name"
+    expectedWhitespace << "#text"
+    expectedWhitespace << "position"
+    expectedWhitespace << "#text"
+    expectedWhitespace << "salary"
+    expectedWhitespace << "#text"
+    expectedWhitespace << "gender"
+    expectedWhitespace << "#text"
+    expectedWhitespace << "employeeId"
+    expectedWhitespace << "address"
+    expectedWhitespace << "#text"
+
     expectedNoWhitespace = []
-      expectedNoWhitespace << "name"
-      expectedNoWhitespace << "position"
-      expectedNoWhitespace << "salary"
-      expectedNoWhitespace << "gender"
-      expectedNoWhitespace << "employeeId"
-      expectedNoWhitespace << "address"
-      
+    expectedNoWhitespace << "name"
+    expectedNoWhitespace << "position"
+    expectedNoWhitespace << "salary"
+    expectedNoWhitespace << "gender"
+    expectedNoWhitespace << "employeeId"
+    expectedNoWhitespace << "address"
+
     expected = []
-      
     result = []
-      
+
     doc = load_document("staff", true)
       elementList = doc.getElementsByTagName("employee")
       employeeNode = elementList.item(1)
       childList = employeeNode.childNodes()
       length = childList.length()
-      
+
       if (equals(6, length))
-        expected =  expectedNoWhitespacerefChild = childList.item(5)
-      newChild = childList.item(0)
-      
-          else
-            expected =  expectedWhitespacerefChild = childList.item(11)
-      newChild = childList.item(1)
-      
-         end
-       insertedNode = employeeNode.insertBefore(newChild, refChild)
+        expected = expectedNoWhitespace
+        refChild = childList.item(5)
+        newChild = childList.item(0)
+      else
+        expected = expectedWhitespace
+        refChild = childList.item(11)
+        newChild = childList.item(1)
+      end
+
+      insertedNode = employeeNode.insertBefore(newChild, refChild)
       indexid6001603 = 0
-    while (indexid6001603 < childList.length)
-      child = childList.item(indexid6001603)
-    childName = child.nodeName()
-      result << childName
-      indexid6001603 += 1
-            end
+
+      while (indexid6001603 < childList.length)
+        child = childList.item(indexid6001603)
+        childName = child.nodeName()
+        result << childName
+        indexid6001603 += 1
+      end
+
       assert_equal(expected, result, "childNames")
-            
   end
 
   ###

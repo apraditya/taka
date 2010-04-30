@@ -13,6 +13,8 @@ require 'nokogiri'
 require 'taka'
 require 'johnson'
 
+require File.expand_path('../known_issues.rb', __FILE__)
+
 module DOM
   class TestCase < Test::Unit::TestCase
     BASE = File.expand_path(File.dirname(__FILE__))
@@ -126,7 +128,7 @@ module JQuery
 
   class TestCase < Test::Unit::TestCase
     undef :default_test
-  end  
+  end
 
   class PoorMansFirebug
     def log *args

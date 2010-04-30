@@ -62,25 +62,24 @@ DOMTestCase('hc_attrcreatedocumentfragment') do
     appendedChild = nil
     langAttrCount = 0;
     doc = load_document("hc_staff", true)
-      docFragment = doc.createDocumentFragment()
-      newOne = doc.createElement("html")
-      newOne.setAttribute("lang", "EN")
-      appendedChild = docFragment.appendChild(newOne)
-      domesticNode = docFragment.firstChild()
-      attributes = domesticNode.attributes()
-      indexid2103806 = 0
+    docFragment = doc.createDocumentFragment()
+    newOne = doc.createElement("html")
+    newOne.setAttribute("lang", "EN")
+    appendedChild = docFragment.appendChild(newOne)
+    domesticNode = docFragment.firstChild()
+    attributes = domesticNode.attributes()
+    indexid2103806 = 0
+
     while (indexid2103806 < attributes.length)
       attribute = attributes.item(indexid2103806)
-    attrName = attribute.nodeName()
+      attrName = attribute.nodeName()
       
       if (equalsAutoCase("attribute", "lang", attrName))
         langAttrCount += 1
-    
-         end
-       indexid2103806 += 1
-            end
-      assert_equal(1, langAttrCount, "hasLangAttr")
-            
+      end
+      indexid2103806 += 1
+    end
+    assert_equal(1, langAttrCount, "hasLangAttr")
   end
 
   ###
