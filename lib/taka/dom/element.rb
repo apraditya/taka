@@ -6,7 +6,7 @@ module Taka
       end
 
       def getAttribute(name)
-        self[name]
+        self[name].to_s
       end
 
       def setAttribute(name, value)
