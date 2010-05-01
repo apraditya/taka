@@ -45,7 +45,9 @@ module DOM
     end
 
     def assertEqualsIgnoreCase(msg, expected, actual)
-      assert_equal(expected.downcase, actual.downcase, msg)
+      expected.each { |string| string.downcase! }
+      actual.each   { |string| string.downcase! }
+      assert_equal(expected, actual, msg)
     end
 
     ### WTF.  FIXME
