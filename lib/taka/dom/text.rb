@@ -16,7 +16,10 @@ module Taka
         left = text[0..(index - 1)]
         right = text[index..-1]
         self.content = left
-        self
+
+        right = document.createTextNode right
+        # parent.insertBefore(right, nextSibling) if parent # apparently text nodes get joined?
+        right
       end
     end
   end
