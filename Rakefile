@@ -35,6 +35,22 @@ namespace :test do
       require file
     end
   end
+
+  namespace :dom do
+    desc "run dom/core tests"
+    task :core do
+      Dir.glob('test/dom/level1/core/**/*.rb').each do |file|
+        require file
+      end
+    end
+
+    desc "run dom/html tests"
+    task :html do
+      Dir.glob('test/dom/level1/html/**/*.rb').each do |file|
+        require file
+      end
+    end
+  end
 end
 
 # vim: syntax=Ruby
