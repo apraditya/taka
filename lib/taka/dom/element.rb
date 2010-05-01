@@ -42,6 +42,7 @@ module Taka
           raise DOMException.new(DOMException::NO_MODIFICATION_ALLOWED_ERR)
         end
         old_attribute = self.getAttributeNode(new_attribute.name)
+        old_attribute = old_attribute.dup(1)
         self[new_attribute.name] = new_attribute.value
         old_attribute
       end
