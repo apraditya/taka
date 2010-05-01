@@ -62,6 +62,9 @@ module Taka
       end
 
       def removeAttributeNode old_attribute
+        if old_attribute._node_map != self.attributes
+          raise DOMException.new(DOMException::NOT_FOUND_ERR)
+        end
         remove_attribute old_attribute.name
       end
 
