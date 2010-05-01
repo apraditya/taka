@@ -41,10 +41,15 @@ module Taka
         ].include?(nodeType)
           raise DOMException.new(DOMException::NO_MODIFICATION_ALLOWED_ERR)
         end
-        old_attribute = self.getAttributeNode(new_attribute.name)
-        old_attribute = old_attribute.dup(1)
-        self[new_attribute.name] = new_attribute.value
-        old_attribute
+
+        if self[new_attribute.name] == new_attribute.value
+          new_attribute
+        else
+          old_attribute = self.getAttributeNode(new_attribute.name)
+          old_attribute = old_attribute.dup(1) if old_attribute.respond_to?(:value)
+          self[new_attribute.name] = new_attribute.value
+          old_attribute
+        end
       end
 
       def removeAttributeNode old_attribute
