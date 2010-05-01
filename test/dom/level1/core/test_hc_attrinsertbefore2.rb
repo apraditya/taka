@@ -79,7 +79,7 @@ DOMTestCase('hc_attrinsertbefore2') do
       value = lastChild.nodeValue()
       assert_equal("Yes", value, "lastChildValue")
             
-  end if multiple_text_nodes_merged_solved?
+  end if solved?(:multiple_text_nodes_merged)
 
   ###
   # Gets URI that identifies the test.

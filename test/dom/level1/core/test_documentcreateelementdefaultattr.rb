@@ -82,7 +82,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       assert_equal("Yes", value, "attrValue")
             assertSize("attrCount", 1, defaultAttr)
 
-  end if default_attributes_solved?
+  end if solved?(:default_attributes)
 
   ###
   # Gets URI that identifies the test.

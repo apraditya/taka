@@ -75,7 +75,7 @@ DOMTestCase('hc_entitiessetnameditem1') do
         end
       end # end begin
     end
-  end if various_exceptions_not_implemented_solved?
+  end if solved?(:various_exceptions_not_implemented)
 
   ###
   # Gets URI that identifies the test.

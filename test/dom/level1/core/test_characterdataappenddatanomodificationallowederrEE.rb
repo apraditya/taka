@@ -82,7 +82,7 @@ DOMTestCase('characterdataappenddatanomodificationallowederrEE') do
       assert(success, "throw_NO_MODIFICATION_ALLOWED_ERR")
     end
 
-  end if nokogiri_entity_resolve_bug_solved?
+  end if solved?(:nokogiri_entity_resolve_bug)
 
   ###
   # Gets URI that identifies the test.

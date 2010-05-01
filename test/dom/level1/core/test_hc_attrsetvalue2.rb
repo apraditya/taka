@@ -76,7 +76,7 @@ DOMTestCase('hc_attrsetvalue2') do
             otherChild = firstChild.nextSibling()
       assert_nil(otherChild, "nextSiblingIsNull")
       
-  end if attribute_reused_implementation_solved?
+  end if solved?(:attribute_reused_implementation)
 
   ###
   # Gets URI that identifies the test.

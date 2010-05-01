@@ -83,7 +83,7 @@ DOMTestCase('hc_attrappendchild3') do
       value = lastChild.nodeValue()
       assert_equal("day", value, "lastChildValue")
             
-  end if multiple_text_nodes_merged_solved?
+  end if solved?(:multiple_text_nodes_merged)
 
   ###
   # Gets URI that identifies the test.

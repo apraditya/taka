@@ -71,7 +71,7 @@ DOMTestCase('textsplittextone') do
       value = secondPart.nodeValue()
       assert_equal("Jones", value, "textSplitTextOneAssert")
             
-  end if multiple_text_nodes_merged_solved?
+  end if solved?(:multiple_text_nodes_merged)
 
   ###
   # Gets URI that identifies the test.

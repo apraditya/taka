@@ -84,7 +84,7 @@ DOMTestCase('hc_elementretrieveallattributes') do
 
          end
        
-  end if nokogiri_ordered_hashes_solved?
+  end if solved?(:nokogiri_ordered_hashes)
 
   ###
   # Gets URI that identifies the test.

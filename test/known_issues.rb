@@ -14,10 +14,8 @@ module DOM
       :various_exceptions_not_implemented => false   #  5 failures,  2 errors
     }
     
-    KNOWN_ISSUES.keys.each do |key|
-      (class << self; self; end).send(:define_method, :"#{key}_solved?") do
-        !ENV['SKIP_KNOWN_ISSUES'] || KNOWN_ISSUES[key]
-      end
+    def self.solved?(issue)
+      !ENV['SKIP_KNOWN_ISSUES'] || KNOWN_ISSUES[issue]
     end
 
     # nokogiri_entity_resolve_bug:
@@ -35,8 +33,8 @@ module DOM
     # default_attributes
     #
     # basically, attributes must be able to find out whether they were specified.
-    # if an attribute is deleted and there's a default attribute, the default
-    # attribute is supposed to be used
+    # or default attributes from the dtd. if an attribute is deleted and there's
+    # a default attribute, the default attribute is supposed to be used
     
     # addressList = doc.getElementsByTagName("address")
     # testNode = addressList.item(0)

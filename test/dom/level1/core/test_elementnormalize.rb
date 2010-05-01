@@ -68,7 +68,7 @@ DOMTestCase('elementnormalize') do
       childValue = firstChild.nodeValue()
       assert_equal("Roger\n Jones", childValue, "elementNormalizeAssert")
             
-  end if node_normalize_not_implemented_solved?
+  end if solved?(:node_normalize_not_implemented)
 
   ###
   # Gets URI that identifies the test.

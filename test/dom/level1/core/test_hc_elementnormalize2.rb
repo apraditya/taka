@@ -72,7 +72,7 @@ DOMTestCase('hc_elementnormalize2') do
             secondChild = firstChild.nextSibling()
       assert_nil(secondChild, "secondChildNull")
       
-  end if node_normalize_not_implemented_solved?
+  end if solved?(:node_normalize_not_implemented)
 
   ###
   # Gets URI that identifies the test.

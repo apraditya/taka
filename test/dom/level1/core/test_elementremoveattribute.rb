@@ -79,7 +79,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
 
       assert_equal("Yes", attrValue, "streetYes")
 
-  end if nokogiri_ordered_hashes_solved?
+  end if solved?(:nokogiri_ordered_hashes)
 
   ###
   # Gets URI that identifies the test.

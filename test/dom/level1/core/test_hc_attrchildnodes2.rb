@@ -76,7 +76,7 @@ DOMTestCase('hc_attrchildnodes2') do
       textNode = childNodes.item(2)
       assert_nil(textNode, "thirdItemIsNull")
       
-  end if multiple_text_nodes_merged_solved?
+  end if solved?(:multiple_text_nodes_merged)
 
   ###
   # Gets URI that identifies the test.

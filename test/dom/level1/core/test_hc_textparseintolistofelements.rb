@@ -102,7 +102,7 @@ DOMTestCase('hc_textparseintolistofelements') do
             
          end
        
-  end if nokogiri_entity_resolve_bug_solved?
+  end if solved?(:nokogiri_entity_resolve_bug)
 
   ###
   # Gets URI that identifies the test.

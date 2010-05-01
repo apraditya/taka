@@ -73,7 +73,7 @@ DOMTestCase('documenttypegetentitiestype') do
             indexid1437602 += 1
             end
       
-  end if nokogiri_entity_resolve_bug_solved?
+  end if solved?(:nokogiri_entity_resolve_bug)
 
   ###
   # Gets URI that identifies the test.
