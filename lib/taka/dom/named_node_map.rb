@@ -4,14 +4,15 @@ module Taka
       attr_accessor :document
 
       def getNamedItem name
-        item = self[name]
+        item = self[name] # || Nokogiri::XML::Attr.new(document, name)
+        # item.node = self
         return item unless item
         document.decorate(item)
       end
 
       def removeNamedItem name
         unless key? name
-          raise DOMException.new(DOMException::NOT_FOUND_ERR) 
+          raise DOMException.new(DOMException::NOT_FOUND_ERR)
         end
         delete name
       end
