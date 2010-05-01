@@ -138,10 +138,10 @@ module Taka
           raise DOMException.new(DOMException::WRONG_DOCUMENT_ERR)
         end
 
-        unless ref_child
-          new_child.parent = self
+        if ref_child
+          ref_child.add_previous_sibling(new_child)
         else
-          return ref_child.add_previous_sibling(new_child)
+          new_child.parent = self
         end
         new_child
       end
