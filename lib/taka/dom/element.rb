@@ -31,7 +31,9 @@ module Taka
       end
 
       def getAttributeNode name
-        self.attribute(name)
+        attribute = self.attribute(name)
+        attribute._node = self if attribute
+        attribute
       end
 
       def setAttributeNode new_attribute
