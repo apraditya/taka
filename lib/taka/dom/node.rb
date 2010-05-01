@@ -207,7 +207,10 @@ module Taka
         ].include?(nodeType)
           raise DOMException.new(DOMException::NOT_SUPPORTED_ERR)
         end
-        dup(deep ? 1 : 0)
+
+        clone = dup(deep ? 1 : 0)
+        self.attributes.each { |name, attr| clone[name] = attr.value } unless deep
+        clone
       end
 
       def normalize
