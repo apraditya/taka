@@ -41,7 +41,7 @@ module DOM
     end
 
     def assertSize(msg, expected, actual)
-      assert_equal(actual.length, expected, msg)
+      assert_equal(expected, actual.length, msg)
     end
 
     def assertEqualsIgnoreCase(msg, expected, actual)
