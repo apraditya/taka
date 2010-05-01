@@ -1,12 +1,10 @@
 module Taka
   module DOM
     module Attr
-      # workaround for the fact that we can not directly assing the attribute
-      # to the parent node in Nokogiri. (or can we?)
-      attr_accessor :_node
+      attr_accessor :ownerElement
 
       def specified
-        !!_node[self.name]
+        !!ownerElement[self.name]
       end
 
       def parentNode

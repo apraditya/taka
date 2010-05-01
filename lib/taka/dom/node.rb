@@ -107,8 +107,8 @@ module Taka
         hash = super
         hash.extend(DOM::AttrNodeMap)
         hash.document = document
-        hash._node = self
-        hash.each_value { |attribute| attribute._node = self }
+        hash.ownerElement = self
+        hash.each_value { |attribute| attribute.ownerElement = self }
         hash
       end
 

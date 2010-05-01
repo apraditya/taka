@@ -3,7 +3,7 @@ module Taka
     module AttrNodeMap
       include NamedNodeMap
       
-      attr_accessor :_node
+      attr_accessor :ownerElement
       
       # def createAttribute name
       #   Nokogiri::XML::Attr.new(document, name)
@@ -11,12 +11,12 @@ module Taka
       #
       # def getNamedItem name
       #   item = self[name] || createAttribute(name)
-      #   item._node = self
+      #   item.ownerElement = self
       #   document.decorate(item)
       # end
       
       def setNamedItem item
-        if item._node && item._node != self._node
+        if item.ownerElement && item.ownerElement != self.ownerElement
           raise DOMException.new(DOMException::INUSE_ATTRIBUTE_ERR)
         end
         super
