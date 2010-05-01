@@ -56,13 +56,28 @@ module DOM
       assert_match args[1], args.last
     end
 
-    ### FIXME not sure how this assertion is supposed to work
-    def assertEqualsAutoCase one, two, expected, actual
-      case expected
-      when Array
-        assert_equal expected.map { |x| x.downcase }, actual.map { |x| x.downcase }
+    # https://dvcs.w3.org/hg/html/rev/4d46b00c2a90#l166
+    def assertEqualsAutoCase(context, msg, expected, actual)
+      if (content_type == "text/html")
+        if(context == "attribute")
+          assert_equal expected.downcase, actual.downcase, msg
+        else
+          assert_equal expected.upcase, actual, msg
+        end
       else
-        assert_equal expected.downcase, actual.downcase
+        assert_equal expected, actual, msg
+      end
+    end
+
+    def equalsAutoCase(context, expected, actual)
+      if (content_type == "text/html")
+        if (context == "attribute")
+          expected.downcase == actual;
+        else
+          expected.upcase == actual;
+        end
+      else
+        expected == actual;
       end
     end
 

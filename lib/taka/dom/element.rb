@@ -42,10 +42,10 @@ module Taka
           raise DOMException.new(DOMException::NO_MODIFICATION_ALLOWED_ERR)
         end
 
-        if new_attribute._node_map && new_attribute._node_map != self.attributes
+        if new_attribute._node && new_attribute._node != self
           raise DOMException.new(DOMException::INUSE_ATTRIBUTE_ERR)
         end
-        new_attribute._node_map = self.attributes
+        new_attribute._node = self
 
         if new_attribute.document != self.document
           raise DOMException.new(DOMException::WRONG_DOCUMENT_ERR)
@@ -62,7 +62,7 @@ module Taka
       end
 
       def removeAttributeNode old_attribute
-        if old_attribute._node_map != self.attributes
+        if old_attribute._node != self
           raise DOMException.new(DOMException::NOT_FOUND_ERR)
         end
         remove_attribute old_attribute.name

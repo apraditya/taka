@@ -108,7 +108,7 @@ module Taka
         hash.extend(DOM::AttrNodeMap)
         hash.document = document
         hash._node = self
-        hash.each_value { |attribute| attribute._node_map = hash }
+        hash.each_value { |attribute| attribute._node = self }
         hash
       end
 
