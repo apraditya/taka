@@ -42,6 +42,15 @@ module Taka
           raise DOMException.new(DOMException::NO_MODIFICATION_ALLOWED_ERR)
         end
 
+        if new_attribute._node_map && new_attribute._node_map != self.attributes
+          raise DOMException.new(DOMException::INUSE_ATTRIBUTE_ERR)
+        end
+        new_attribute._node_map = self.attributes
+
+        if new_attribute.document != self.document
+          raise DOMException.new(DOMException::WRONG_DOCUMENT_ERR)
+        end
+
         if self[new_attribute.name] == new_attribute.value
           new_attribute
         else

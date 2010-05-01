@@ -4,8 +4,7 @@ module Taka
       attr_accessor :document
 
       def getNamedItem name
-        item = self[name] # || Nokogiri::XML::Attr.new(document, name)
-        # item.node = self
+        item = self[name]
         return item unless item
         document.decorate(item)
       end

@@ -105,8 +105,10 @@ module Taka
       def attributes
         return nil unless attribute_nodes
         hash = super
-        hash.extend(DOM::NamedNodeMap)
+        hash.extend(DOM::AttrNodeMap)
         hash.document = document
+        hash._node = self
+        hash.each_value { |attribute| attribute._node_map = hash }
         hash
       end
 

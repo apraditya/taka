@@ -68,7 +68,7 @@ DOMTestCase('elementwrongdocumenterr') do
     testAddress = nil
     attrAddress = nil
     doc1 = load_document("staff", true)
-      doc2 = load_document("staff", false)
+    doc2 = load_document("staff", false)
       newAttribute = doc2.createAttribute("newAttribute")
       addressElementList = doc1.getElementsByTagName("address")
       testAddress = addressElementList.item(4)
