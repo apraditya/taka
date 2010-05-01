@@ -161,6 +161,7 @@ module Taka
           raise DOMException.new(DOMException::NOT_FOUND_ERR)
         end
         old_child.replace new_child
+        old_child
       end
 
       def removeChild old_child
