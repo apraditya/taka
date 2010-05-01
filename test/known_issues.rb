@@ -18,7 +18,9 @@ module DOM
     }
     
     KNOWN_ISSUES.keys.each do |key|
-      (class << self; self; end).send(:define_method, :"#{key}_solved?") { KNOWN_ISSUES[key] }
+      (class << self; self; end).send(:define_method, :"#{key}_solved?") do
+        !ENV['SKIP_KNOWN_ISSUES'] || KNOWN_ISSUES[key]
+      end
     end
 
     # nokogiri_entity_resolve_bug:
