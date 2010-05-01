@@ -62,7 +62,7 @@ DOMTestCase('notationgetpublicid') do
       publicId = notationNode.publicId()
       assert_equal("notation1File", publicId, "publicId")
             
-  end if public_id_not_implemented_solved?
+  end 
 
   ###
   # Gets URI that identifies the test.

@@ -89,7 +89,7 @@ DOMTestCase('hc_nodecloneattributescopied') do
             
          end
        
-  end if node_clone_attributes_not_copied_solved?
+  end if nokogiri_ordered_hashes_solved?
 
   ###
   # Gets URI that identifies the test.

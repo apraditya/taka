@@ -67,7 +67,7 @@ DOMTestCase('entitygetpublicidnull') do
       publicId = entityNode.publicId()
       assert_nil(publicId, "entityGetPublicIdNullAssert")
       
-  end if public_id_not_implemented_solved?
+  end 
 
   ###
   # Gets URI that identifies the test.

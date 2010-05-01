@@ -83,7 +83,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       specified = streetAttr.specified()
       assertFalse("attrNotSpecified", specified)
 
-  end if get_named_item_returning_empty_attribute_solved?
+  end if default_attributes_solved?
 
   ###
   # Gets URI that identifies the test.

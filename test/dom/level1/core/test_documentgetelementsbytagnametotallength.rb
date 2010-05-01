@@ -51,10 +51,9 @@ DOMTestCase('documentgetelementsbytagnametotallength') do
     nameList = nil
     doc = load_document("staff", false)
       nameList = doc.getElementsByTagName("*")
-      
       if (("image/svg+xml" == getContentType()))
         assertSize("elementCountSVG", 39, nameList)
-      
+
           else
             assertSize("documentGetElementsByTagNameTotalLengthAssert", 37, nameList)
       

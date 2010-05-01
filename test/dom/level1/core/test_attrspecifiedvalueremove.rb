@@ -78,12 +78,15 @@ org.w3c.domts.DocumentBuilderSetting.validating
       testNode = addressList.item(2)
       testNode.removeAttribute("street")
       attributes = testNode.attributes()
+
+      attr = testNode.attribute_nodes.first
+
       streetAttr = attributes.getNamedItem("street")
       assert_not_nil(streetAttr, "streetAttrNotNull")
       state = streetAttr.specified()
       assertFalse("attrSpecifiedValueRemoveAssert", state)
 
-  end if get_named_item_returning_empty_attribute_solved?
+  end if default_attributes_solved?
 
   ###
   # Gets URI that identifies the test.

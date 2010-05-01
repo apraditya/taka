@@ -76,7 +76,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       attribute = testEmployee.getAttribute("street")
       assert_equal("Yes", attribute, "streetYes")
             
-  end if missing_default_values_solved?
+  end
 
   ###
   # Gets URI that identifies the test.

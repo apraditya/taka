@@ -66,7 +66,7 @@ DOMTestCase('hc_namednodemapnumberofnodes') do
             
          end
        
-  end if missing_default_values_solved?
+  end
 
   ###
   # Gets URI that identifies the test.

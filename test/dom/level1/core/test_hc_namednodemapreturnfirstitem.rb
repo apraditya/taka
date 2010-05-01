@@ -90,7 +90,7 @@ DOMTestCase('hc_namednodemapreturnfirstitem') do
             
          end
        
-  end if missing_default_values_solved?
+  end if nokogiri_ordered_hashes_solved?
 
   ###
   # Gets URI that identifies the test.

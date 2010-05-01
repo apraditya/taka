@@ -67,7 +67,7 @@ DOMTestCase('notationgetpublicidnull') do
       publicId = notationNode.publicId()
       assert_nil(publicId, "publicId")
       
-  end if public_id_not_implemented_solved?
+  end 
 
   ###
   # Gets URI that identifies the test.

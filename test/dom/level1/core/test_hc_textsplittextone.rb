@@ -70,7 +70,7 @@ DOMTestCase('hc_textsplittextone') do
       value = secondPart.nodeValue()
       assert_equal("Jones", value, "textSplitTextOneAssert")
             
-  end if multiple_text_nodes_merged_problem_solved?
+  end if multiple_text_nodes_merged_solved?
 
   ###
   # Gets URI that identifies the test.

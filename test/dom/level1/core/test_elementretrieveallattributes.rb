@@ -88,7 +88,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       attributes = testAddress.attributes()
       assertSize("elementRetrieveAllAttributesAssert", 2, attributes)
       
-  end if missing_default_values_solved?
+  end
 
   ###
   # Gets URI that identifies the test.

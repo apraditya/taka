@@ -74,9 +74,6 @@ org.w3c.domts.DocumentBuilderSetting.validating
     doc = load_document("staff", true)
       newElement = doc.createElement("address")
       defaultAttr = newElement.attributes()
-
-      # defaultAttr is an empty Hash. seems to expect a named node map?
-
       child = defaultAttr.item(0)
       assert_not_nil(child, "defaultAttrNotNull")
       name = child.nodeName()
@@ -85,7 +82,7 @@ org.w3c.domts.DocumentBuilderSetting.validating
       assert_equal("Yes", value, "attrValue")
             assertSize("attrCount", 1, defaultAttr)
 
-  end if missing_default_values_solved?
+  end if default_attributes_solved?
 
   ###
   # Gets URI that identifies the test.
