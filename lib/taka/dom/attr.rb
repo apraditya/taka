@@ -14,6 +14,10 @@ module Taka
       def attributes
         nil
       end
+
+      def nextSibling
+        nil
+      end
     end
   end
 end
