@@ -92,8 +92,7 @@ module DOM
     end
 
     def load_document(doc_uri, will_be_modified)
-      options = self.class.name =~ /attrdefaultvalue/i ? 15 : 3
-      options |= (1 << 5 | 1 << 6)
+      options = (1 << 1 | 1 << 2 | 1 << 3 | 1 << 4 | 1 << 5 | 1 << 6)
       if self.class.name =~ /^Html/
         html_file = File.join(BASE, 'dom', 'level1','html','files',"#{doc_uri}.html")
         Taka::DOM::HTML(File.open(html_file), html_file, nil, options)
