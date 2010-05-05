@@ -30,25 +30,39 @@ namespace :test do
   end
 
   desc "run dom tests"
-  task :dom do
-    Dir.glob('test/dom/**/*.rb').each do |file|
-      require file
+  task(:dom) { run_dom_tests }
+
+  namespace :dom do
+    desc "run dom/level1 tests"
+    task(:level1) { run_dom_tests('level1') }
+
+    desc "run dom/level2 tests"
+    task(:level2) { run_dom_tests('level2') }
+
+    namespace :level1 do
+      desc "run dom/level1/core tests"
+      task(:core) { run_dom_tests('level1', 'core') }
+
+      desc "run dom/level1/html tests"
+      task(:html) { run_dom_tests('level1', 'html') }
+    end
+
+    namespace :level2 do
+      desc "run dom/level2/core tests"
+      task(:core) { run_dom_tests('level2', 'core') }
+
+      desc "run dom/level2/events tests"
+      task(:events) { run_dom_tests('level2', 'events') }
+
+      desc "run dom/level2/html tests"
+      task(:html) { run_dom_tests('level2', 'html') }
     end
   end
 
-  namespace :dom do
-    desc "run dom/core tests"
-    task :core do
-      Dir.glob('test/dom/level1/core/**/*.rb').each do |file|
-        require file
-      end
-    end
-
-    desc "run dom/html tests"
-    task :html do
-      Dir.glob('test/dom/level1/html/**/*.rb').each do |file|
-        require file
-      end
+  def run_dom_tests(level = nil, component = nil)
+    path = ['test/w3c-dom'] + [level, component].compact
+    Dir.glob("#{path.join('/')}/**/test_*.rb").each do|file|
+      require file
     end
   end
 end
