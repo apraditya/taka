@@ -6,7 +6,7 @@ module Taka
       end
 
       def data=(_)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#data="))
       end
 
       def length

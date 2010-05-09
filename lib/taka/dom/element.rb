@@ -77,28 +77,35 @@ module Taka
       end
 
       def getAttributeNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getAttributeNS"))
       end
+
       def setAttributeNS(namespaceURI, qualifiedName, value)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#setAttributeNS"))
       end
+
       def removeAttributeNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#removeAttributeNS"))
       end
+
       def getAttributeNodeNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getAttributeNodeNS"))
       end
+
       def setAttributeNodeNS(newAttr)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#setAttributeNodeNS"))
       end
+
       def getElementsByTagNameNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getElementsByTagNameNS"))
       end
+
       def hasAttribute(name)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#hasAttribute"))
       end
+
       def hasAttributeNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#hasAttributeNS"))
       end
     end
   end

@@ -14,7 +14,6 @@ require 'taka'
 require 'johnson'
 
 require File.expand_path('../known_issues.rb', __FILE__)
-require File.expand_path('../dom_test_case.rb', __FILE__)
 
 module DOM
   class TestCase < Test::Unit::TestCase

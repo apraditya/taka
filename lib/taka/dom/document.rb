@@ -16,7 +16,7 @@ module Taka
       end
 
       def implementation
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#implementation"))
       end
 
       def documentElement
@@ -77,64 +77,81 @@ module Taka
       end
 
       def importNode(importedNode, deep)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#importNode"))
       end
+
       def createElementNS(namespaceURI, qualifiedName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#createElementNS"))
       end
+
       def createAttributeNS(namespaceURI, qualifiedName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#createAttributeNS"))
       end
+
       def getElementsByTagNameNS(namespaceURI, localName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getElementsByTagNameNS"))
       end
 
       def inputEncoding
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#inputEncoding"))
       end
+
       def xmlEncoding
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#xmlEncoding"))
       end
+
       def xmlStandalone
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#xmlStandalone"))
       end
+
       def xmlStandalone=(_)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#xmlStandalone="))
       end
+
       def xmlVersion
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#xmlVersion"))
       end
+
       def xmlVersion=(_)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#xmlVersion="))
       end
+
       def strictErrorChecking
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#strictErrorChecking"))
       end
+
       def strictErrorChecking=(_)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#strictErrorChecking="))
       end
+
       def documentURI
-        raise(NotImplementedError.new)
+        @document_uri
       end
-      def documentURI=(_)
-        raise(NotImplementedError.new)
+      
+      def documentURI=(uri)
+        @document_uri = uri
       end
+      
       def adoptNode(source)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#adoptNode"))
       end
+
       def domConfig
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#domConfig"))
       end
+
       def normalizeDocument
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#normalizeDocument"))
       end
+
       def renameNode(n, namespaceURI, qualifiedName)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#renameNode"))
       end
 
       def decorate node
         nx = Nokogiri::XML
-        list = {
+        nh = Nokogiri::HTML
+        map = {
           nx::Node     => [DOM::Element, DOM::Node],
           nx::Element  => [DOM::Element, DOM::Node],
           nx::Attr     => [DOM::Element, DOM::Node, DOM::Attr],
@@ -148,7 +165,10 @@ module Taka
           nx::DocumentFragment => [DOM::Element, DOM::Node, DOM::DocumentFragment],
           nx::Comment => [DOM::Element, DOM::Node, DOM::Comment],
           nx::Notation => [DOM::Element, DOM::Node, DOM::Notation],
-        }[node.class]
+          nh::DocumentFragment => [DOM::Element, DOM::Node, DOM::DocumentFragment]
+        }
+        # map[nh::DocumentFragment] = map[nx::DocumentFragment]
+        list = map[node.class]
 
         raise("Unknown type #{node.class.name}") unless list
 
@@ -156,10 +176,9 @@ module Taka
         node
       end
 
-      def js_property? name
-        return true if [:body, :documentElement].include?(name)
-        false
-      end
+      # def js_property? name
+      #   [:body, :documentElement, :nodeName].include?(name)
+      # end
     end
   end
 end

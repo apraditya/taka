@@ -1,4 +1,4 @@
-require File.expand_path('../../../../test_helper', __FILE__)
+require File.expand_path('../../test_helper', __FILE__)
 
 class Level2EventsTest < Test::Unit::TestCase
   attr_reader :doc, :body, :foo, :event

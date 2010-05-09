@@ -15,7 +15,7 @@ module Taka
         nil
       end
 
-      def nextSibling
+      def nextSibling 
         nil
       end
     end

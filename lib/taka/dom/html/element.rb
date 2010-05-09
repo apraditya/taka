@@ -2,12 +2,24 @@ module Taka
   module DOM
     module HTML
       module Element
+        def []=(key, value)
+          case value
+          when NilClass, FalseClass
+            value = ''
+          when TrueClass
+            value = key
+          # when Fixnum
+          #   value = value.to_s
+          end
+          super
+        end
+
         def id
           getAttribute('id')
         end
 
         def className
-          self['class']
+          self['className']
         end
 
         ###
@@ -15,6 +27,13 @@ module Taka
         # http://developer.mozilla.org/en/DOM/element.innerHTML
         def innerHTML
           inner_html
+        end
+
+        def innerHTML=(html)
+          document.fragment(html).children.each do |tag|
+            appendChild(tag)
+            document.decorate(tag)
+          end
         end
 
         def method_missing method, *args, &block

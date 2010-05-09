@@ -5,6 +5,11 @@ module Taka
         def title
           at('.//title').text
         end
+        
+        def title=(title)
+          node = at('.//title') # TODO create head and title nodes if missing
+          node.content = title
+        end
 
         # Returns the URI of the page that linked to this page. The value is
         # an empty string if the user navigated to the page directly (not

@@ -22,7 +22,7 @@ module Taka
       XINCLUDE_START =     19
       XINCLUDE_END =       20
       DOCB_DOCUMENT_NODE = 21
-
+      
       def nodeName
         return '#text' if text?
         return '#comment' if comment?
@@ -72,11 +72,16 @@ module Taka
       end
 
       def nodeType
-        node_type
+        case nodeType = node_type
+        when HTML_DOCUMENT_NODE
+          DOCUMENT_NODE
+        else
+          nodeType
+        end
       end
 
       def parentNode
-        parent
+        respond_to?(:parent) ? parent : nil
       end
 
       def childNodes
@@ -214,45 +219,110 @@ module Taka
       end
 
       def normalize
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#normalize"))
       end
 
       def isSupported(feature, version)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#isSupported"))
       end
 
       def namespaceURI
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#namespaceURI"))
       end
 
       def prefix
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#prefix"))
       end
 
       def prefix=(_)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#prefix="))
       end
 
       def localName
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#localName"))
       end
 
       def hasAttributes
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#hasAttributes"))
       end
+
+      # http://www.w3.org/TR/DOM-Level-3-Core/core.html#Node3-baseURI
+      # The absolute base URI of this node or null if the implementation wasn't
+      # able to obtain an absolute URI. This value is computed as described in
+      # Base URIs. However, when the Document supports the feature "HTML" [DOM
+      # Level 2 HTML], the base URI is computed using first the value of the
+      # href attribute of the HTML BASE element if any, and the value of the
+      # documentURI attribute from the Document interface otherwise.
+      # 
+      # Relative paths in the document are relative to the base URL. The base
+      # URL is the location of the current document by default, but it can be
+      # overridden by the base tag.
 
       def baseURI
-        raise(NotImplementedError.new)
+        base = at('.//base')
+        base ? base['href'] : document.documentURI
+      end
+      
+      def contains(other)
+        other == self || other.ancestors.include?(self)
       end
 
-      DOCUMENT_POSITION_DISCONNECTED = 0
-      DOCUMENT_POSITION_PRECEDING = 0
-      DOCUMENT_POSITION_FOLLOWING = 0
-      DOCUMENT_POSITION_CONTAINS = 0
-      DOCUMENT_POSITION_CONTAINED_BY = 0
-      DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 0
+      DOCUMENT_POSITION_EQUAL                   = 0
+      DOCUMENT_POSITION_DISCONNECTED            = 1
+      DOCUMENT_POSITION_PRECEDING               = 2
+      DOCUMENT_POSITION_FOLLOWING               = 4
+      DOCUMENT_POSITION_CONTAINS                = 8
+      DOCUMENT_POSITION_CONTAINED_BY            = 16
+      DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC = 32
+
+      
       def compareDocumentPosition(other)
-        raise(NotImplementedError.new)
+        # raise(NotImplementedError.new("not implemented: #{self.class.name}#compareDocumentPosition"))
+
+        return DOCUMENT_POSITION_EQUAL if self == other
+
+        return DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC | DOCUMENT_POSITION_FOLLOWING | 
+          DOCUMENT_POSITION_DISCONNECTED if ownerDocument != other.ownerDocument
+
+        parentNode.childNodes.each do |sibling|
+          if sibling == self
+            return DOCUMENT_POSITION_FOLLOWING
+          elsif sibling == other
+            return DOCUMENT_POSITION_PRECEDING
+          end
+        end if parentNode == other.parentNode
+
+        return DOCUMENT_POSITION_CONTAINED_BY | DOCUMENT_POSITION_FOLLOWING if contains(other)
+        return DOCUMENT_POSITION_CONTAINS     | DOCUMENT_POSITION_PRECEDING if other.contains(self)
+
+        aparents = ancestors
+
+        bparents = [];
+        parent = other.parentNode;
+
+        while(parent)
+          i = aparents.index(parent);
+          if i.nil?
+            bparents[bparents.length] = parent;
+            parent = parent.parentNode;
+          else
+            if bparents.length > aparents.length
+              return DOCUMENT_POSITION_FOLLOWING;
+            elsif bparents.length < aparents.length
+              return DOCUMENT_POSITION_PRECEDING;
+            else
+              # common ancestor diverge point
+              if i === 0
+                return DOCUMENT_POSITION_FOLLOWING;
+              else
+                parent = aparents[i - 1]
+              end
+              return parent.compareDocumentPosition(bparents.pop);
+            end
+          end
+        end
+
+        DOCUMENT_POSITION_IMPLEMENTATION_SPECIFIC | DOCUMENT_POSITION_DISCONNECTED
       end
 
       def textContent
@@ -264,29 +334,35 @@ module Taka
       end
 
       def isSameNode(other)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#isSameNode"))
       end
 
       def lookupPrefix(namespaceURI)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#lookupPrefix"))
       end
+      
       def isDefaultNamespace(namespaceURI)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#isDefaultNamespace"))
       end
+      
       def lookupNamespaceURI(prefix)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#lookupNamespaceURI"))
       end
+      
       def isEqualNode(arg)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#isEqualNode"))
       end
+      
       def getFeature(feature, version)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getFeature"))
       end
+      
       def setUserData(key, data, handler)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#setUserData"))
       end
+      
       def getUserData(key)
-        raise(NotImplementedError.new)
+        raise(NotImplementedError.new("not implemented: #{self.class.name}#getUserData"))
       end
 
       ###
@@ -340,10 +416,10 @@ module Taka
         true
       end
 
-      def js_property? name
-        return true if [:firstChild].include?(name)
-        false
-      end
+      # def js_property? name
+      #   return true if [:firstChild, :nodeName].include?(name)
+      #   false
+      # end
 
     end
   end

@@ -53,10 +53,8 @@ DOMTestCase('documentgetelementsbytagnametotallength') do
       nameList = doc.getElementsByTagName("*")
       if (("image/svg+xml" == getContentType()))
         assertSize("elementCountSVG", 39, nameList)
-
           else
             assertSize("documentGetElementsByTagNameTotalLengthAssert", 37, nameList)
-      
          end
        
   end
